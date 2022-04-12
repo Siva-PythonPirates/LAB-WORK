@@ -1,0 +1,158 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node {
+	int info;
+	struct node* next;
+};
+struct node* last = NULL;
+void insert_first()
+{
+	int data;
+	struct node* temp;
+	temp = (struct node*)malloc(sizeof(struct node));
+	printf("\nEnter data to be "
+		"inserted: \n");
+	scanf("%d", &data);
+	if (last == NULL) {
+		temp->info = data;
+		temp->next = temp;
+		last = temp;
+	}
+	else {
+		temp->info = data;
+		temp->next = last->next;
+		last->next = temp;
+	}
+}
+void insert_last()
+{
+	int data;
+	struct node* temp;
+	temp = (struct node*)malloc(sizeof(struct node));
+	printf("\nEnter data to be "
+		"inserted : \n");
+	scanf("%d", &data);
+	if (last == NULL) {
+		temp->info = data;
+		temp->next = temp;
+		last = temp;
+	}
+	else {
+		temp->info = data;
+		temp->next = last->next;
+		last->next = temp;
+		last = temp;
+	}
+}
+void insert_any()
+{
+	int data,value;
+	struct node *temp, *n;
+	printf("\nEnter number after which you want to enter number: \n");
+	scanf("%d",&value);
+	temp = last->next;
+	do {
+		if (temp->info == value) {
+			n = (struct node*)malloc(sizeof(struct node));
+			printf("\nEnter data to be"
+				" inserted : \n");
+			scanf("%d", &data);
+			n->info = data;
+			n->next = temp->next;
+			temp->next = n;
+			if (temp == last)
+				last = n;
+			break;
+		}
+		else
+			temp = temp->next;
+	} while (temp != last->next);
+}
+void delete_first()
+{
+	struct node* temp;
+	if (last == NULL)
+		printf("\nList is empty.\n");
+	else {
+		temp = last->next;
+		last->next = temp->next;
+		free(temp);
+	}
+}
+void delete_last()
+{
+	struct node* temp;
+	if (last == NULL)
+		printf("\nList is empty.\n");
+	temp = last->next;
+	while (temp->next != last)
+		temp = temp->next;
+	temp->next = last->next;
+	last = temp;
+}
+void delete_any()
+{
+	int pos, i = 1;
+	struct node *temp, *position;
+	temp = last->next;
+	if (last == NULL)
+		printf("\nList is empty.\n");
+	else {
+		printf("\nEnter index : ");
+		scanf("%d", &pos);
+		while (i <= pos - 1) {
+			temp = temp->next;
+			i++;
+		}
+		position = temp->next;
+		temp->next = position->next;
+		free(position);
+	}
+}
+void display()
+{
+	if (last == NULL)
+		printf("\nList is empty\n");
+	else {
+		struct node* temp;
+		temp = last->next;
+		do {
+			printf("\n%d", temp->info);
+			temp = temp->next;
+		} while (temp != last->next);
+	}
+}
+int main(){
+	int c,i,x=1;
+	while(x){
+	printf("\n1.Insert at beginning\n2.Insert at end\n3.Insert at a specified position\n4.Delete Beginning\n5.Delete End\n6.Delete any specified postion\n7.Traverse\n8.Exit\n\nEnter your choice :");
+	scanf("%d",&c);
+	switch (c){
+	case 1:
+	insert_first();
+	break;
+	case 2:
+	insert_last();
+	break;
+	case 3:
+	insert_any();
+	break;
+	case 4:
+	delete_first();
+	break;
+	case 5:
+	delete_last();
+	break;
+	case 6:
+	delete_any();
+	break;
+	case 7:
+	display();
+	break;
+	case 8:
+	x=0;
+	printf("Thankyou....");
+	break;
+	}
+}
+}
