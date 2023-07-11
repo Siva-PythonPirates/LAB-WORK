@@ -156,3 +156,98 @@ int main(){
 	}
 }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include<stdio.h>
+int main(){
+//     int n;
+//     scanf("%d",&n);
+//     int a[n];
+//     for(int i=0;i<n;i++)
+//     scanf("%d",&a[i]);
+//     int c=0;
+//     int v=1;
+//     for(int i=0;i<a[c];i++){
+            
+//             printf("%d",v);
+//             printf("%*s",c,"0");
+//             v++;c++;
+//         }
+//         // c--;
+// }
+
+    int  i,j, n;int number=1,space;
+    int limit=n*(n+1);
+    scanf("%d", &n);
+    int  c;
+    for (i = 0; i < n; i++) {
+        for (j = 1; j <= i; j++) {
+        printf("* ");
+        }
+        for (j = n; j > i; j--) {
+        printf("%d ", number);
+        ++number;
+        }
+        // for (j = n; j > i; j--) {
+        // printf("%d ", number);
+        // ++number;
+        // }
+        
+        // for (j = n; j > i; j--) {
+        // printf("%d ", number);
+        // ++number;
+        // }
+    
+        // for (j = number; number!=limit+1; j++) {
+        // printf("%d ", number);
+        // number++;
+        // }
+        // for (i = n; i >= 1; i--) {
+        //     for (c = 1; c <= i; c++) {
+        //         printf("%d ", n*i+(c-n+1) );
+        //         }
+            printf("\n");
+        // }
+    // }
+}
+//   for (i = n; i >= 1; --i) {
+//     //   for (space = 0; space < n - i; ++space)
+//     //      printf("  ");
+//     //   for (j = i; j <= 2 * i - 1; ++j)
+//     //      printf("* ");
+//       for (j = 0; j <= i - 1; ++j){
+//          printf("%d ",number);
+//          number++;}
+//       printf("\n");
+//   }
+}
+
+
+
+    
+
+    // for (i = 1; i <= n; i++) {
+        
+    // }
+
+
