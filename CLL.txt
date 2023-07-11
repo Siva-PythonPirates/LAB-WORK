@@ -251,3 +251,153 @@ int main(){
     // }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int* spiralOrder(int** matrix, int matrixRowSize, int matrixColSize) {
+    int top, bottom, left, right, where;
+    int i;
+    int *p = (int *)malloc(matrixRowSize * matrixColSize * sizeof(int));
+    if (!p) {
+        return p;
+    }
+    
+    i = 0;
+    top = 0;
+    left = 0;
+    bottom = matrixRowSize;
+    right = matrixColSize;
+    
+    while (i < matrixRowSize * matrixColSize) {
+        if (top < bottom) {
+            where = left;
+            while (where < right) {         // on top, left -> right
+                p[i++] = matrix[top][where];
+                where ++;
+            }
+            top ++;
+        }
+        if (right > left) {
+            where = top;
+            while (where < bottom) {        // on right, top -> bottom
+                p[i++] = matrix[where][right - 1];
+                where ++;
+            }
+            right --;
+        }
+        if (bottom > top) {                 // on bottom, right -> left
+            where = right;
+            while (where > left) {
+                p[i++] = matrix[bottom - 1][where - 1];
+                where --;
+            }
+            bottom --;
+        }
+        if (left < right) {                 // on left, bottom -> top
+            where = bottom;
+            while (where > top) {
+                p[i++] = matrix[where - 1][left];
+                where --;
+            }
+            left ++;
+        }
+    }
+    
+    return p;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+int* spiralOrder(int** matrix, int matrixSize, int* matrixColSize, int* returnSize) {
+    int m = matrixSize;
+    int n = *matrixColSize;
+    int totalElements = m * n;
+    int* ans = (int*)malloc(totalElements * sizeof(int));
+    *returnSize = totalElements;
+
+    int left = 0, right = n - 1, top = 0, bottom = m - 1;
+    int index = 0;
+
+    while (index < totalElements && top<=bottom && left<=right) {
+        // Traverse from left to right
+        for (int i = left; i <= right && index < totalElements; i++) {
+            ans[index++] = matrix[top][i];
+        }
+        top++;
+
+        // Traverse from top to bottom
+        for (int i = top; i <= bottom && index < totalElements; i++) {
+            ans[index++] = matrix[i][right];
+        }
+        right--;
+    if(top<=bottom)
+       { // Traverse from right to left
+        for (int i = right; i >= left && index < totalElements; i--) {
+            ans[index++] = matrix[bottom][i];
+        }
+        bottom--;
+       }
+    if(left<=right)
+    {
+        // Traverse from bottom to top
+        for (int i = bottom; i >= top && index < totalElements; i--) {
+            ans[index++] = matrix[i][left];
+        }
+        left++;
+    }
+    }
+    return ans;
+}
